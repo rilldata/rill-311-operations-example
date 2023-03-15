@@ -102,8 +102,7 @@ SELECT * FROM SanJoseNormalized
 SELECT
   DATE_DIFF('HOUR', start_event_date, end_event_date) AS date_diff_in_hours,
   CASE 
-    WHEN LOWER(status) IN ('open', 'new') THEN 'Active' 
-    WHEN LOWER(status) IN ('in progress') THEN 'In Progress'
+    WHEN LOWER(status) IN ('open', 'new', 'in progress') THEN 'Active' 
     WHEN status IS NULL THEN 'Unknown' 
     ELSE 'Closed' 
     END AS status_type,

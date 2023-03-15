@@ -1,6 +1,2 @@
 type: https
 uri: https://data.sfgov.org/api/views/vw6y-z8j6/rows.csv?accessType=DOWNLOAD
-extract:
-  rows:
-    strategy: head
-    size: 1GB
