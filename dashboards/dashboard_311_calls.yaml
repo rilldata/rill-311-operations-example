@@ -15,6 +15,9 @@ measures:
     description: "The median latency from open to close in hours."
     format_preset: humanize
 dimensions:
+  - label: "Status Type"
+    property: "status_type"
+    description: ""
   - label: City
     property: city
     description: ""
@@ -48,6 +51,4 @@ dimensions:
   - label: Outcome
     property: outcome
     description: ""
-  - label: "Status Type"
-    property: "status_type"
-    description: ""
+

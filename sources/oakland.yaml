@@ -1,6 +1,2 @@
 type: https
 uri: https://data.oaklandca.gov/api/views/quth-gb8e/rows.csv?accessType=DOWNLOAD
-extract:
-  rows:
-    strategy: head
-    size: 1GB
