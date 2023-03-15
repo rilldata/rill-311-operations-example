@@ -1,0 +1,53 @@
+# Visit https://docs.rilldata.com/references/project-files to learn more about Rill project files.
+
+display_name: "Bay Area 311 Call Center Metrics"
+model: "normalized_311_model"
+default_time_range: ""
+smallest_time_grain: ""
+timeseries: "start_event_date"
+measures:
+  - label: Total Ticket Volume
+    expression: count(DISTINCT ticket_id)
+    description: Total number of unique tickets present
+    format_preset: humanize
+  - label: "Median Time to Resolve Ticket (Hours)"
+    expression: "MEDIAN(date_diff_in_hours)"
+    description: "The median latency from open to close in hours."
+    format_preset: humanize
+dimensions:
+  - label: City
+    property: city
+    description: ""
+  - label: Longitude
+    property: longitude
+    description: ""
+  - label: Latitude
+    property: latitude
+    description: ""
+  - label: Ticket_id
+    property: ticket_id
+    description: ""
+  - label: Street_address
+    property: street_address
+    description: ""
+  - label: Description
+    property: description
+    description: ""
+  - label: Category
+    property: category
+    description: ""
+  - label: Activity
+    property: activity
+    description: ""
+  - label: Status. Detail
+    property: status
+    description: ""
+  - label: Method
+    property: method
+    description: ""
+  - label: Outcome
+    property: outcome
+    description: ""
+  - label: "Status Type"
+    property: "status_type"
+    description: ""

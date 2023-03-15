@@ -1,0 +1,4 @@
+compiler: rill-beta
+rill_version: 0.21.2-snapshot
+
+name: example-rill-311
