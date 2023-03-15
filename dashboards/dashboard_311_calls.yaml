@@ -42,7 +42,7 @@ dimensions:
   - label: Activity
     property: activity
     description: ""
-  - label: Status. Detail
+  - label: Status Detail
     property: status
     description: ""
   - label: Method
