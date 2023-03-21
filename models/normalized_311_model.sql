@@ -1,4 +1,3 @@
--- @materialize:true
 WITH  
 
 BerkeleyNormalized AS 
@@ -44,27 +43,6 @@ SELECT
 FROM oakland
 ),
 
-SanFranciscoNormalized AS 
-(
-SELECT
-  'San Francisco' AS city,
-  'CA' AS state,
-  Opened AS start_event_date,
-  STRPTIME(Closed, '%m/%d/%Y %I:%M:%S %p') AS end_event_date,
-  CASE WHEN Longitude = '0.0' THEN NULL ELSE Longitude END AS longitude,
-  CASE WHEN Latitude = '0.0' THEN NULL ELSE Latitude END  AS latitude,
-  CaseID AS ticket_id,
-  Street AS street_address,
-  CONCAT("Request Type", ': ', "Request Details") AS description, 
-  Category AS category,
-  "Media URL" AS activity,
-  "Status" AS status,
-  Source AS method,
-  "Responsible Agency" AS outcome,
-  Neighborhoods AS neighborhood,
-FROM sanfrancisco
-),
-
 
 SanJoseNormalized AS 
 (
@@ -92,8 +70,6 @@ SELECT * FROM BerkeleyNormalized
   UNION ALL 
 SELECT * FROM OaklandNormalized
   UNION ALL 
-SELECT * FROM SanFranciscoNormalized
-  UNION ALL 
 SELECT * FROM SanJoseNormalized
 
 )
@@ -108,7 +84,7 @@ SELECT
     END AS status_type,
   CAST(ticket_id AS VARCHAR) AS ticket_id,
   LOWER(category) AS category,
-
+NULL AS random,
   * exclude(ticket_id, category)
 FROM Together 
 WHERE start_event_date >= '2023-01-01'
