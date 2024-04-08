@@ -1,34 +1,12 @@
 WITH  
 
-BerkeleyNormalized AS 
-(
-SELECT
-  'Berkeley' AS city,
-  'CA' AS state, 
-  Date_Opened  AS start_event_date,
-  STRPTIME(Date_Closed, '%M/%d/%Y %I:%M:%S %p') AS end_event_date,
-  Longitude AS longitude,
-  Latitude AS latitude,
-  Case_ID AS ticket_id,
-  Street_Address AS street_address,
-  CONCAT(Request_Detail, ': ', Object_Type) AS description, 
-  Request_Category AS category,
-  Request_SubCategory AS activity,
-  Case_Status AS status,
-  NULL AS method,
-  NULL AS outcome,
-  Neighborhood AS neighborhood,
-FROM berkeley
-),
-
-
 OaklandNormalized AS 
 (
 SELECT
   'Oakland' AS city,
   'CA' AS state,
   DATETIMEINIT AS start_event_date,
-  STRPTIME(DATETIMECLOSED, '%M/%d/%Y %I:%M:%S %p') AS end_event_date,
+  STRPTIME(DATETIMECLOSED, '%Y-%m-%d %H:%M:%S') AS end_event_date,
   REPLACE(SPLIT(REQADDRESS,',')[1], '(','') AS longitude,
   REPLACE(SPLIT(REQADDRESS,',')[2], ')','') AS latitude,
   REQUESTID AS ticket_id,
@@ -66,8 +44,6 @@ FROM sanjose
 ),
 
 Together AS (
-SELECT * FROM BerkeleyNormalized
-  UNION ALL 
 SELECT * FROM OaklandNormalized
   UNION ALL 
 SELECT * FROM SanJoseNormalized

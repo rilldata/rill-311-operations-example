@@ -1,53 +1,82 @@
-# Visit https://docs.rilldata.com/references/project-files to learn more about Rill project files.
+# Visit https://docs.rilldata.com/reference/project-files to learn more about Rill project files.
 
-display_name: "Bay Area 311 Call Center Metrics"
-model: "normalized_311_model"
-default_time_range: ""
-smallest_time_grain: ""
-timeseries: "start_event_date"
+model: normalized_311_model
+timeseries: start_event_date
+default_time_range: P6W
+first_day_of_week: 7
 measures:
-  - label: Total Ticket Volume
-    expression: count(DISTINCT ticket_id)
-    description: Total number of unique tickets present
+  - label: Total records
+    expression: count(*)
+    name: total_records
+    description: Total number of records present
     format_preset: humanize
-  - label: "Median Time to Resolve Ticket (Hours)"
-    expression: "MEDIAN(date_diff_in_hours)"
-    description: "The median latency from open to close in hours."
-    format_preset: humanize
+    valid_percent_of_total: true
 dimensions:
-  - label: "Status Type"
-    property: "status_type"
+  - name: status_type
+    label: Status_type
+    column: status_type
     description: ""
-  - label: City
-    property: city
+  - name: ticket_id
+    label: Ticket_id
+    column: ticket_id
     description: ""
-  - label: Longitude
-    property: longitude
+  - name: category
+    label: Category
+    column: category
     description: ""
-  - label: Latitude
-    property: latitude
+  - name: city
+    label: City
+    column: city
     description: ""
-  - label: Ticket_id
-    property: ticket_id
+  - name: state
+    label: State
+    column: state
     description: ""
-  - label: Street_address
-    property: street_address
+  - name: longitude
+    label: Longitude
+    column: longitude
     description: ""
-  - label: Description
-    property: description
+  - name: latitude
+    label: Latitude
+    column: latitude
     description: ""
-  - label: Category
-    property: category
+  - name: street_address
+    label: Street_address
+    column: street_address
     description: ""
-  - label: Activity
-    property: activity
+  - name: description
+    label: Description
+    column: description
     description: ""
-  - label: Status Detail
-    property: status
+  - name: activity
+    label: Activity
+    column: activity
     description: ""
-  - label: Method
-    property: method
+  - name: status
+    label: Status
+    column: status
     description: ""
-  - label: Outcome
-    property: outcome
+  - name: method
+    label: Method
+    column: method
     description: ""
+  - name: outcome
+    label: Outcome
+    column: outcome
+    description: ""
+  - name: neighborhood
+    label: Neighborhood
+    column: neighborhood
+    description: ""
+available_time_zones:
+  - America/Los_Angeles
+  - America/Chicago
+  - America/New_York
+  - Europe/London
+  - Europe/Paris
+  - Asia/Jerusalem
+  - Europe/Moscow
+  - Asia/Kolkata
+  - Asia/Shanghai
+  - Asia/Tokyo
+  - Australia/Sydney
